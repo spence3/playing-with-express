@@ -1,0 +1,15 @@
+{
+  "name": "express-crash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "node --watch server"
+  },
+  "keywords": [],
+  "author": "spencer miller",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
