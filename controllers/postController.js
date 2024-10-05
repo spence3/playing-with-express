@@ -2,8 +2,7 @@ const express = require('express')
 const router = express.Router()
 var fs = require('fs')
 var data = fs.readFileSync('db.json')
-var posts = JSON.parse(data).posts
-console.log(posts)
+var posts = JSON.parse(data)
 
 // let posts = [
 //     {id: 1, title: 'Post One'},
@@ -28,7 +27,7 @@ const getPosts = (req, res, next) => {
 //@route    GET /api/posts/:id
 const getPost = (req, res, next) => {
     const id = parseInt(req.params.id)
-    const post = posts.find((post) => post.id === id)
+    const post = posts.posts.find((post) => post.id === id)
 
     if(!post){
         const error = new Error(`A post with the id of ${id} was not found`)
@@ -42,7 +41,7 @@ const getPost = (req, res, next) => {
 //@route    POST /api/posts/
 const createPost = (req, res, next) => {
     const newPost = {
-        id: posts.length + 1,
+        id: posts.posts.length + 1,
         title: req.body.title
     }
     if(!newPost.title){
@@ -50,9 +49,8 @@ const createPost = (req, res, next) => {
         error.status = 400
         return next(error)
     }
-    posts.push(newPost)
-    posts = JSON.stringify(posts)
-    fs.writeFile('db.json', posts, (err) => {
+    posts.posts.push(newPost)
+    fs.writeFile('db.json', JSON.stringify(posts), (err) => {
         if(err) throw err
         console.log('Successfully added')
     })

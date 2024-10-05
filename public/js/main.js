@@ -10,9 +10,10 @@ async function showPosts(){
         }
 
         const posts = await res.json()
+        console.log(posts.posts)
         output.innerHTML = ''
 
-        posts.forEach((post) => {
+        posts.posts.forEach((post) => {
             const postEl = document.createElement('div')
             postEl.textContent = post.title
             output.appendChild(postEl)
@@ -30,13 +31,14 @@ async function addPost(e){
     const title = formData.get('title')
 
     try {
-        const res = await fetch('http://localhost:3000/api/posts', {
+        const res = await fetch('http://localhost:8000/api/posts', {
             method: 'POST',
             headers:{
                 'content-type': 'application/json'
             },
             body: JSON.stringify({title})
         })
+        console.log('in here')
         if(!res.ok){
             throw new Error('failed to add post')
         }
