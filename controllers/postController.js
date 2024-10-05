@@ -51,6 +51,12 @@ const createPost = (req, res, next) => {
         return next(error)
     }
     posts.push(newPost)
+    posts = JSON.stringify(posts)
+    fs.writeFile('db.json', posts, (err) => {
+        if(err) throw err
+        console.log('Successfully added')
+    })
+    // console.log(posts)
     res.status(201).json(posts)
 }
 
