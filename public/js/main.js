@@ -13,7 +13,7 @@ async function showPosts(){
         console.log(posts.posts)
         output.innerHTML = ''
 
-        posts.posts.forEach((post) => {
+        posts.forEach((post) => {
             const postEl = document.createElement('div')
             postEl.textContent = post.title
             output.appendChild(postEl)

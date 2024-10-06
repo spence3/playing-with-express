@@ -19,7 +19,7 @@ const getPosts = (req, res, next) => {
             .status(200)
             .json(posts.slice(0,limit))
     }
-    res.status(200).json(posts)
+    res.status(200).json(posts.posts)
 }
 
 
